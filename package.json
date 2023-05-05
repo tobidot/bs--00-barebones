@@ -1,0 +1,17 @@
+{
+  "name": "bs-barebones",
+  "version": "1.0.0",
+  "author": "tobidot <Object.name@live.de>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite serve src",
+    "test": "vite serve test-src",
+    "preview": "vite preview src",
+    "build": "vite build src --outDir ../dist"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "^4.0.3",
+    "vite": "^4.3.4"
+  }
+}
