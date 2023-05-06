@@ -1,4 +1,4 @@
-export function prevent_default(
+export function preventDefault(
     container: HTMLElement
 ): void {
     // prevent mouse wheel from scrolling page

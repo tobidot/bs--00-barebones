@@ -21,7 +21,7 @@ export class Game {
     protected update(delta_ms: number) {
         this.controller.update(delta_ms);
         this.view.update(delta_ms);
-        this.view.draw(this.model);
+        this.view.render(this.model);
     }
 
     public async run() {

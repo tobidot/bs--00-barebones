@@ -1,30 +1,40 @@
+* {
+    box-sizing: border-box;
+}
 
 body {
-    background: lightgray;
-}
-
-label {
+    --border: 2rem;
     display: flex;
+    width: 100%;
+    height: 100vh;
+    padding: var(--border);
+    margin: 0;
+
+    background: lightgray;
+
+    justify-content: center;
+    align-items: start;
 }
 
-input {
-    width: 100%;
+#app {
+    display: flex;
+    max-width: calc(100vw - var(--border) * 2);
+    max-height: calc(100vh - var(--border) * 2);
+    width: min(100%, (100vh - var(--border) * 2)* 4 / 3);
+    height: auto;
+    justify-content: center;
+    align-items: center;
+    background-color: #111;
+
+    outline: black 1px solid;
+}
+
+#app:focus {
+    outline: red 1px solid;
 }
 
 canvas {
     display: flex;
-    max-width: calc(100vw - 16px);
-    max-height: calc(100vh - 16px);
-    width: min(100%, (100vh - 16px) * 4 / 3);
-    height: auto;
-    margin: auto;
-    justify-content: center;
-    align-items: center;
-    background-color: #111;
-    
-    outline: black 1px solid;    
-}
-
-canvas:focus {
-    outline: red 1px solid;  
+    width: 100%;
+    height: 100%;
 }

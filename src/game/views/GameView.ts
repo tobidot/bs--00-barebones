@@ -1,6 +1,7 @@
 import { GameModel } from "../models/GameModel";
+import { View } from "../../library/abstract/mvc/View";
 
-export class GameView {
+export class GameView implements View {
 
     public constructor(
         public context: CanvasRenderingContext2D,
@@ -8,11 +9,11 @@ export class GameView {
 
     }
 
-    public update(delta_ms: number) {
+    public update(delta_ms: number) : void{
         // do nothing
     }
 
-    public draw(model: GameModel): void {
+    public render(model: GameModel): void {
         this.reset_canvas_state();
         this.context.fillText("Example", 400, 300);
     }
