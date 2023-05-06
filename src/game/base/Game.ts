@@ -8,11 +8,13 @@ export class Game {
     public controller: GameController;
     public view: GameView;
     public model: GameModel;
+    public last_time_ms: number = 0;
+    public on_game_finished: null|(() => void) = null;
 
     public constructor(app: HTMLElement) {
         const canvas = tgt.getElementByQuerySelector(app, "canvas", HTMLCanvasElement);
         const context = canvas.getContext("2d");
-        if (context === null) throw new Error("No 2d context found");
+        tgt.assertNotNull(context, "No 2d context found");
         this.view = new GameView(context);
         this.model = new GameModel();
         this.controller = new GameController(this.model);
@@ -24,20 +26,21 @@ export class Game {
         this.view.render(this.model);
     }
 
+    protected onFrame = (timestamp_ms: number) =>  {
+        this.update(timestamp_ms - this.last_time_ms);
+        this.last_time_ms = timestamp_ms;
+        if (this.controller.isGameOver()) {
+            if(this.on_game_finished) this.on_game_finished();
+        } else {
+            requestAnimationFrame(this.onFrame);
+        }
+    }
+
     public async run() {
         return new Promise<void>((resolve, reject) => {
+            this.on_game_finished = resolve;
             this.controller.newGame();
-            let last_time_ms = 0;
-            const frame = (timestamp_ms: number) => {
-                this.update(timestamp_ms - last_time_ms);
-                last_time_ms = timestamp_ms;
-                if (this.controller.isGameOver()) {
-                    resolve();
-                } else {
-                    requestAnimationFrame(frame);
-                }
-            }
-            requestAnimationFrame(frame);
+            requestAnimationFrame(this.onFrame);
         });
     }
 }

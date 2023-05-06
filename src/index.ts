@@ -5,5 +5,5 @@ import * as tgt from "./library/index";
     const app = tgt.getElementById('app', HTMLDivElement);
     tgt.preventDefault(app);
     let game: Game = new Game(app);
-    game.run();
+    await game.run();
 })();

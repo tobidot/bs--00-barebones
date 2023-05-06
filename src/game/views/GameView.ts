@@ -14,14 +14,14 @@ export class GameView implements View {
     }
 
     public render(model: GameModel): void {
-        this.reset_canvas_state();
+        this.resetCanvasState();
         this.context.fillText("Example", 400, 300);
     }
 
     /**
      * Reset default canvas state and paint the background
      */
-    protected reset_canvas_state() {
+    protected resetCanvasState() {
         this.context.fillStyle = "#000";
         this.context.fillRect(0, 0, 800, 600);
         this.context.fillStyle = "#fff";
